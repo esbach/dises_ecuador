@@ -33,7 +33,7 @@ format:
 #| echo: false
 #| results: asis
 
-image_files <- list.files("images/photos/web", full.names = TRUE)
+image_files <- list.files("images/photos", full.names = TRUE)
 
 for (img in image_files) {
   cat(sprintf('![](%s){group="gallery" loading="lazy"}\n\n', img))

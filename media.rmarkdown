@@ -1,0 +1,115 @@
+---
+title: "Multimedia"
+format:
+  html:
+    lightbox: true
+    page-layout: full
+    anchor-sections: false
+    css: styles.css
+---
+
+# Videos
+
+::::: columns
+::: {.column width="50%"}
+{{< video images/film/Chambira.mov >}}
+:::
+
+::: {.column width="50%"}
+{{< video images/film/Chambira.mov >}}
+:::
+:::::
+
+# Art
+
+::: masonry-gallery
+![](images/art/Wilfrido1.jpeg){.lightbox group="art" loading="lazy"} ![](images/art/Wilfrido2.jpeg){.lightbox group="art" loading="lazy"}
+:::
+
+# Photos
+
+::: masonry-gallery
+```{r}
+#| echo: false
+#| results: asis
+
+image_files <- list.files("images/photos", full.names = TRUE)
+
+for (img in image_files) {
+  cat(sprintf('![](%s){group="gallery" loading="lazy"}\n\n', img))
+}
+```
+:::
+
+```{=html}
+<style>
+
+/* hide title block but get browser tab title*/
+.quarto-title-block {
+  display: none !important;
+}
+
+.masonry-gallery {
+  column-count: 4;
+  column-gap: 1rem;
+  margin-top: 1rem;
+}
+
+.masonry-gallery p {
+  margin: 0 !important;
+}
+
+.masonry-gallery a {
+  display: block;
+  margin: 0 !important;
+}
+
+.masonry-gallery img {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  break-inside: avoid;
+}
+
+.gallery-img {
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+  display: block;
+  break-inside: avoid;
+}
+
+/* Video columns styling */
+.columns {
+  margin-bottom: 2rem;
+}
+
+.column {
+  padding: 0 0.5rem; /* Add horizontal padding for spacing */
+}
+
+/* Video styling */
+.column video {
+  width: 100%;
+}
+
+/* One column on mobile */
+@media (max-width: 768px) {
+  .masonry-gallery {
+    column-count: 1;
+  }
+  
+  /* Stack video columns on mobile */
+  .columns {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .column {
+    width: 100% !important;
+  }
+}
+
+</style>
+```
+
