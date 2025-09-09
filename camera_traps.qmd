@@ -1,0 +1,106 @@
+---
+title: "Camera Traps"
+format: html
+runtime: shiny
+toc: true
+lightbox: false
+---
+
+# Camera Trap Data Visualization
+
+This interactive map shows camera trap data from the Siekopai territory, displaying species detections and site information.
+
+```{r}
+library(shiny)
+library(leaflet)
+library(dplyr)
+library(sf)
+
+data_dir <- "map"
+territory_lookup <- c(SKP = "Siekopai", SNA = "Siona", SGE = "Sinangoe")
+
+ui <- fluidPage(
+  titlePanel("Camera Trap Data - Siekopai Territory"),
+  selectInput("species", "Select Species:", choices = NULL),
+  leafletOutput("map")
+)
+
+server <- function(input, output, session) {
+  # Territory-specific data
+  territory_data <- reactive({
+    territory_code <- "SKP"
+    territory_name <- territory_lookup[[territory_code]]
+    
+    # File paths
+    sites_file      <- file.path(data_dir, paste0(territory_code, " Sites.csv"))
+    detections_file <- file.path(data_dir, paste0(territory_code, " Detections.csv"))
+    shp_prefix      <- file.path(data_dir, paste0(territory_code, " Territory"))
+    
+    # Read data
+    sites <- read.csv(sites_file)
+    detections <- read.csv(detections_file)
+    species_list <- sort(unique(detections$Species))
+    territory_sf <- st_read(paste0(shp_prefix, ".shp"))
+    territory_sf <- st_make_valid(territory_sf)
+    
+    list(
+      territory_code = territory_code,
+      territory_name = territory_name,
+      sites = sites,
+      detections = detections,
+      species_list = species_list,
+      territory_sf = territory_sf
+    )
+  })
+  
+  # Update species dropdown after data loads
+  observe({
+    updateSelectInput(session, "species",
+                      choices = c("All Species", territory_data()$species_list),
+                      selected = "All Species")
+  })
+  
+  reactive_data <- reactive({
+    sites <- territory_data()$sites
+    detections <- territory_data()$detections
+    if (input$species == "All Species") {
+      detections %>%
+        group_by(Station) %>%
+        summarise(N = n_distinct(Species))
+    } else {
+      detections %>%
+        filter(Species == input$species) %>%
+        count(Station, name = "N")
+    }
+  })
+  
+  output$map <- renderLeaflet({
+    sites <- territory_data()$sites
+    territory_sf <- territory_data()$territory_sf
+    df <- reactive_data()
+    sites_rich <- sites %>%
+      left_join(df, by = "Station") %>%
+      tidyr::replace_na(list(N = 0))
+    
+    pal <- colorNumeric("YlOrRd", sites_rich$N)
+    
+    leaflet(sites_rich) %>%
+      addProviderTiles(providers$CartoDB.VoyagerLabelsUnder) %>%
+      addPolygons(data = territory_sf,
+                  color = "#208a68", weight = 2, fillOpacity = 0.2) %>%
+      addCircleMarkers(
+        lng = ~gps_x, lat = ~gps_y,
+        color = ~pal(N),
+        radius = 8, fillOpacity = 1,
+        stroke = FALSE,
+        label = ~paste0(Station, ": ", N,
+                        ifelse(input$species=="All Species", " species", " detections"))
+      ) %>%
+      addLegend("bottomright", pal = pal, values = ~N,
+                title = ifelse(input$species=="All Species", "Number of<br>Species", "Detections"))
+  })
+}
+
+shinyApp(ui, server)
+```
+

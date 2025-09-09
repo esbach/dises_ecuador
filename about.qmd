@@ -1,0 +1,148 @@
+---
+title: "About"
+toc: true
+---
+
+# The Project
+
+The Project Indigenous Peoples have long interacted with their environment, thereby shaping a variety of socio-environmental systems where human and natural components share iterative relations and sustain feedbacks that modify and influence one another. This project focuses on the production and maintenance of Indigenous territories, particularly the ways in which Indigenous Peoples utilize their language, knowledge, and practices to sustain their relationships with their environment. Whereas extractive development creates socio-environmental systems that threaten long-term ecosystem dynamics, as evidenced by climate change, many Indigenous peoples have employed forms of care, conservation, and adaptive management that maintain their lands and livelihoods.
+
+The goal of this research is to understand how Indigenous communities maintain their territories despite the deleterious effects of encroaching extractive socio-environmental systems. We have established partnerships with the Cofán, Siekopai, and Siona People in the Ecuadorian Amazon. US and Indigenous researchers will co-develop research that examines the resilience of Indigenous territories in the face of change. The project pairs Western (e.g., wildlife ecology, socio-environmental modeling, human geography) with place-based Indigenous approaches to knowledge to study resilience across a set of discrete Cofán, Siekopai and Siona territories that vary in size, degree of encroachment, and integrity of biocultural heritage.
+
+# Approach
+
+The proposed research seeks to gain insight into the role of biocultural heritage in territorial resilience. As such, we have developed hypotheses to be addressed using a fieldwork-based, interdisciplinary design that integrates the social and natural sciences, using four Indigenous territories as experimental settings and sources of information. Our research design seeks to help build Indigenous research capacity, support Indigenous models of governance in their territory, and provide an important source of income that will support several families in each territory. We are working to train Indigenous researchers in each community so that they can participate in each stage of the research process and lead future research.
+
+# Participants
+
+::::::::::: columns
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/MiguelAcevedo.jpg){.grid-img group="people"} <strong>Miguel Acevedo</strong> [University of Florida]{.inst} <a href="https://www.linkedin.com/in/miguelacevedo" target="_blank" class="social-link"> <i class="bi bi-linkedin"></i> </a> </a>
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/JoelCorreia.jpg){.grid-img group="people"} <strong>Joel Correia</strong> [Colorado State University]{.inst}
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/MichaelEsbach.jpg){.grid-img group="people"} <strong>Michael Esbach</strong> [Colorado State University]{.inst}
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/NelyNarvaez.jpg){.grid-img group="people"} <strong>Nely Narvaez</strong> [Nacionalidad Cofán]{.inst}
+:::
+::::
+:::::::::::
+
+::::::::::: columns
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/NicolasLucitande.jpeg){.grid-img group="people"} <strong>Nicolas Lucitande</strong> [Nacionalidad Siekopai]{.inst}
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/YolandaPiaguaje.jpg){.grid-img group="people"} <strong>Yolanda Piaguaje</strong> [Nacionalidad Siona]{.inst}
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/CynthiaSimmons.jpg){.grid-img group="people"} <strong>Cynthia Simmons</strong> [University of Florida]{.inst}
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/GonzaloRivas.jpg){.grid-img group="people"} <strong>Gonzalo Rivas-Torres</strong> [Univ. San Francisco de Quito]{.inst}
+:::
+::::
+:::::::::::
+
+::::::: columns
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/CarlosUrgiles.jpeg){.grid-img group="people"} <strong>Carlos Urgiles</strong> [Colorado State University]{.inst}
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/RobertWalker.jpeg){.grid-img group="people"} <strong>Robert Walker</strong> [University of Florida]{.inst}
+:::
+::::
+:::::::
+
+```{=html}
+<style>
+/* Card structure */
+.person-card {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Images: uniform size via aspect-ratio (square here; change to 3/4 for portrait) */
+.grid-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+  padding: 0.5rem;
+  box-sizing: border-box;
+}
+
+/* Name + institution */
+.person-card strong {
+  display: block;
+  margin-top: 0.4rem;
+}
+
+.inst {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 0.1rem;
+}
+
+/* Mobile/tablet: force two columns */
+@media (max-width: 1200px) {
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .column {
+    width: 50% !important;
+    margin-bottom: -1rem; /* as in your example */
+  }
+
+  .grid-img {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.social-link {
+  font-size: 1.2rem;     /* size of the icon */
+  color: #555;           /* medium grey */
+  display: inline-block;
+  margin-top: 0.25rem;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  color: #000;           /* black on hover */
+}
+
+</style>
+```

@@ -1,0 +1,184 @@
+---
+title: "Publications"
+date-format: 'YYYY'
+listing:
+  contents:
+    - publications.yml
+  type: table
+  fields: [date, journal-title, title, authors, doi]
+  field-display-names:
+    date: Year
+    journal-title: Journal
+    authors: Authors
+    doi: Link
+---
+
+# Publications
+
+```{=html}
+<style>
+
+/* Table Layout and Column Sizing */
+.quarto-listing-table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.quarto-listing-table th:nth-child(1), /* Year column */
+.quarto-listing-table td:nth-child(1) {
+  width: 7%;
+}
+
+.quarto-listing-table th:nth-child(2), /* Journal column */
+.quarto-listing-table td:nth-child(2) {
+  width: 18%;
+}
+
+.quarto-listing-table th:nth-child(3), /* Title column */
+.quarto-listing-table td:nth-child(3) {
+  width: 40%;
+}
+
+.quarto-listing-table th:nth-child(4), /* Authors column */
+.quarto-listing-table td:nth-child(4) {
+  width: 28%;
+}
+
+.quarto-listing-table th:nth-child(5), /* DOI column */
+.quarto-listing-table td:nth-child(5) {
+  width: 7%;
+}
+
+/* Title Styling - Make it slightly bigger and semibold */
+.quarto-listing-table .listing-title {
+  font-weight: 600 !important;
+  font-size: 1rem;
+}
+
+/* Year, Journal, and Authors - Consistent font size */
+.quarto-listing-table .listing-date,
+.quarto-listing-table .listing-journal-title,
+.quarto-listing-table .listing-authors {
+  font-size: 1rem;
+}
+
+/* DOI Button Styling */
+.quarto-listing-table .listing-doi a {
+  display: inline-block;
+  background-color: #455441;
+  color: white !important;
+  text-decoration: none !important;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: 1px solid #455441;
+}
+
+.quarto-listing-table .listing-doi a:hover {
+  background-color: #5a6b5a;
+  border-color: #5a6b5a;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive Table Styling */
+@media (max-width: 992px) {
+  /* Mobile table styling */
+  .quarto-listing-table,
+  .quarto-listing-table td,
+  .quarto-listing-table th,
+  .quarto-listing-table .listing-title,
+  .quarto-listing-table .listing-date,
+  .quarto-listing-table .listing-journal-title,
+  .quarto-listing-table .listing-authors {
+    font-size: 0.8rem !important; /* Change this value to adjust all text size */
+  }
+  
+  .quarto-listing-table {
+    width: 100%;
+    table-layout: auto;
+  }
+  
+  /* Hide year column on mobile */
+  .quarto-listing-table th:nth-child(1),
+  .quarto-listing-table td:nth-child(1) {
+    display: none;
+  }
+  
+  /* Column widths for mobile */
+  .quarto-listing-table th:nth-child(2), .quarto-listing-table td:nth-child(2) { width: 25%; } /* Journal
+  .quarto-listing-table th:nth-child(3), .quarto-listing-table td:nth-child(3) { width: 45%; } /* Title
+  .quarto-listing-table th:nth-child(4), .quarto-listing-table td:nth-child(4) { width: 25%; } /* Authors
+  .quarto-listing-table th:nth-child(5), .quarto-listing-table td:nth-child(5) { width: 5%; } /* DOI
+  
+  /* DOI button styling */
+  .quarto-listing-table .listing-doi a {
+    padding: 2px 4px;
+    font-size: 0.6rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .quarto-listing-table,
+  .quarto-listing-table td,
+  .quarto-listing-table th,
+  .quarto-listing-table .listing-title,
+  .quarto-listing-table .listing-date,
+  .quarto-listing-table .listing-journal-title,
+  .quarto-listing-table .listing-authors {
+    font-size: 0.55rem !important; /* Change this value to adjust all text size */
+  }
+  
+  .quarto-listing-table {
+    width: 100%;
+  }
+  
+  /* Hide year column */
+  .quarto-listing-table th:nth-child(1),
+  .quarto-listing-table td:nth-child(1) {
+    display: none;
+  }
+  
+  /* Column widths for very small screens */
+  .quarto-listing-table th:nth-child(2), .quarto-listing-table td:nth-child(2) { width: 22%; } /* Journal: 22% */
+  .quarto-listing-table th:nth-child(3), .quarto-listing-table td:nth-child(3) { width: 58%; } /* Title: 58% */
+  .quarto-listing-table th:nth-child(4), .quarto-listing-table td:nth-child(4) { width: 12%; } /* Authors: 12% */
+  .quarto-listing-table th:nth-child(5), .quarto-listing-table td:nth-child(5) { width: 8%; } /* DOI: 8% */
+  
+  /* DOI button styling */
+  .quarto-listing-table .listing-doi a {
+    padding: 1px 3px;
+    font-size: 0.55rem;
+  }
+}
+
+</style>
+```
+
+```{=html}
+<script>
+// Convert DOI spans to clickable links
+document.addEventListener('DOMContentLoaded', function() {
+  const doiSpans = document.querySelectorAll('.listing-doi');
+  
+  doiSpans.forEach(function(span) {
+    const doiUrl = span.textContent.trim();
+    if (doiUrl && (doiUrl.includes('doi.org') || doiUrl.includes('doi:'))) {
+      // Create a link element
+      const link = document.createElement('a');
+      link.href = doiUrl;
+      link.textContent = 'DOI';
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      
+      // Replace the span content with the link
+      span.innerHTML = '';
+      span.appendChild(link);
+    }
+  });
+});
+</script>
+```

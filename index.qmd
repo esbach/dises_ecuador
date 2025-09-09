@@ -1,0 +1,145 @@
+---
+title: "Home"
+format: html
+page-layout: full
+---
+
+:::: hero
+::: overlay
+### Coexistence based on Knowledge and <br> Conservation of Indigenous Territories
+:::
+::::
+
+```{=html}
+<style>
+
+/* ========== NAV BAR FONT ========== */
+
+/* Override navbar just on the homepage */
+.navbar,
+.navbar .nav-link,
+.navbar .nav-link:hover,
+.navbar .nav-link:focus,
+.navbar .nav-link.active,
+.navbar-brand,
+.navbar-brand:hover {
+  color: #ffffff !important;
+}
+
+h3 {
+  color: #ffffff !important;
+  font-size: 2.25rem;
+}
+
+h3 .anchorjs-link {
+  display: none !important;
+}
+
+/* ========== GLOBAL / LAYOUT ========== */
+
+/* No scroll; no stray gaps */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;      /* lock page scroll */
+  overflow-x: hidden;    /* prevent viewport overshoot white strip */
+}
+
+/* Quarto sometimes injects top padding when navbar is fixed */
+body.nav-fixed { padding-top: 0 !important; }
+
+/* Kill default gutters/margins so the hero truly sits at the edges */
+#quarto-content,
+main#quarto-document-content,
+.page-columns, .content, .column-page {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+/* ========== NAVBAR ON TOP, TRANSPARENT ========== */
+.navbar {
+  position: fixed !important;
+  top: 0; left: 0; right: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  z-index: 1000; /* above hero */
+}
+
+/* Optional: turn solid after scroll (kept harmless since scrolling is locked) */
+/*
+.headroom--not-top .navbar {
+  background: #fff !important;
+  box-shadow: 0 2px 6px rgba(0,0,0,.1);
+}
+*/
+
+/* ========== HERO (FULL-SCREEN BACKGROUND) ========== */
+
+/* Pin hero to the viewport so it always fills it and sits behind navbar */
+.hero {
+  position: fixed;  /* attach to viewport */
+  inset: 0;         /* top:0 right:0 bottom:0 left:0 */
+  background: url("images/home.jpg") center / cover no-repeat;
+  z-index: 0;
+}
+
+/* Centered overlay content */
+.hero .overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;          /* vertical center */
+  justify-content: flex-start;  /* align to left */
+  padding-left: 5%;            /* push text in 10% from left edge */
+  padding-top: 25%;
+  text-align: left;
+}
+
+/* ========== MOBILE RESPONSIVE STYLES ========== */
+
+/* Mobile styles for screens smaller than 768px */
+@media (max-width: 992px) {
+  .hero .overlay h3 {
+    font-size: 1.75rem !important;
+  }
+  
+  .hero .overlay h3 br {
+    display: none !important;
+  }
+  
+  .hero .overlay {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-top: 75%;
+    text-align: center;
+  }
+  
+  
+  /* Make mobile navbar background glassy/transparent when expanded */
+  .navbar-collapse {
+    background-color: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 8px !important;
+    margin-top: 0.5rem !important;
+  }
+  
+  .navbar-collapse .nav-link {
+    color: #333333 !important;
+  }
+  
+  .navbar-collapse .nav-link:hover,
+  .navbar-collapse .nav-link:focus {
+    color: #455441 !important;
+  }
+  
+  .navbar-collapse .nav-link.active {
+    color: #455441 !important;
+  }
+}
+
+</style>
+```

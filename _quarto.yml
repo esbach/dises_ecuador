@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+  resources:
+    - data/**
+
+website:
+  title: ""
+  search: false
+  navbar:
+    logo: images/logo.png
+    background: "transparent"
+    right:
+      - index.qmd
+      - about.qmd
+      - partners.qmd
+      - publications.qmd
+      - media.qmd
+
+format:
+  html:
+    theme: default
+    page-layout: full
+    css: styles.css
+
+editor: visual
+

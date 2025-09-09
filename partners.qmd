@@ -1,0 +1,199 @@
+---
+title: "Partners"
+format: html
+toc: true
+lightbox: false
+---
+
+# Our Partners
+
+The Ecuadorian Amazon is home to numerous Indigenous Peoples and the territories in which they live, although far fewer and with much smaller populations than prior to European conquest. Nevertheless, in recent years, Indigenous Peoples have mobilized here to fight for their land and have successfully regained property rights to over 50% of the region. This includes our partners the Siekopai (or Secoya), the Siona, and the Cofán (or A’i).
+
+<br>
+
+<!-- container -->
+
+::: {#map style="height:320px;border-radius:12px;overflow:hidden;"}
+:::
+
+<!-- Leaflet -->
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+```{=html}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+```
+
+```{=html}
+<script>
+// Base map
+const map = L.map("map");
+
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  subdomains: "abcd",
+  maxZoom: 20,
+  attribution:
+    'Tiles © <a href="https://carto.com/basemaps">CARTO</a>, ' +
+    'Data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+// --- styles ---
+const defaultStyle = {
+  color: "#0f172a",     // outline
+  weight: 1,
+  fillColor: "#3B82F6", // blue fill for all
+  fillOpacity: 0.35
+};
+
+const highlightStyle = {
+  color: "#f59e0b",     // highlight border (amber)
+  weight: 4,
+  fillOpacity: 0.45
+};
+
+let selectedLayer = null; // track current selection
+
+// Load your local GeoJSON (bundled with the site)
+fetch("data/areas.geojson")
+  .then(r => r.json())
+  .then(geojson => {
+    const layer = L.geoJSON(geojson, {
+      style: defaultStyle,
+      onEachFeature: (feature, lyr) => {
+        const p = feature.properties || {};
+        const name = p.name || p.Name || "Area";
+        lyr.bindPopup(`<strong>${name}</strong>`);
+
+        // Click -> highlight & bring to front
+        lyr.on("click", (e) => {
+          L.DomEvent.stopPropagation(e);
+          if (selectedLayer && selectedLayer !== lyr) {
+            layer.resetStyle(selectedLayer);
+          }
+          selectedLayer = lyr;
+          lyr.setStyle(highlightStyle);
+          if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+            lyr.bringToFront();
+          }
+          lyr.openPopup();
+        });
+
+        // Optional: pointer cursor on hover
+        lyr.on("mouseover", () => map.getContainer().style.cursor = "pointer");
+        lyr.on("mouseout",  () => map.getContainer().style.cursor = "");
+      }
+    }).addTo(map);
+
+    map.fitBounds(layer.getBounds(), { padding: [20,20] });
+
+    // Click on empty map -> clear highlight
+    map.on("click", () => {
+      if (selectedLayer) {
+        layer.resetStyle(selectedLayer);
+        selectedLayer = null;
+        map.closePopup();
+      }
+    });
+  })
+  .catch(err => console.error("GeoJSON load error:", err));
+</script>
+```
+
+<br>
+
+# Territories
+
+## Siekopai (Aguarico)
+
+:::::: columns
+::: {.column width="60%"}
+The Siekopai manage a mosaic of titled lands in Ecuador. Our research efforts focus on their jointly held territory with the Siona along the Aguarico River, which hosts the communities of San Pablo, Waiya and Bellavista, as well as a larger block to the east, which includes the communities of Remolino and Sewaya. Together these communities host approximately 700 people. Additional territories include a block of land to the west of the Cuyabeno Wildlife Reserve and a territory near the border of Peru within the Reserve. The Siekopai recently won a legal case to expand this territory, Pë'këya, from 5000 ha to over 40,000 ha. This victory is especially significant because it sets a legal precedent in Ecuador, acknowledging Indigenous peoples' rights to lands within protected areas. The Siekopai are deeply connected to their land and are actively engaged in stewardship efforts. These include traditional medicinal gardens, the protection of sacred plants like yoco and yajé (ayahuasca) and grassroots initiatives to reclaim and protect their territories
+:::
+
+::: {.column width="5%"}
+<!-- spacer -->
+:::
+
+::: {.column width="35%"}
+![](images/partners/Siekopai.jpeg)
+:::
+::::::
+
+## Cofán of Zábalo
+
+:::::: columns
+::: {.column width="60%"}
+Located along the Aguarico River, Zábalo totals over 142,000 hectares and is located within the Cuyabeno Wildlife Reserve. Zábalo was founded in the early 1980s by a group of Dureno residents who sought to escape the dramatic ecological and social changes impacting Dureno, including resource scarcity and regular contact with colonists. Due to their experience in Dureno, Zábalo residents developed a sophisticated resource management system to manage their resources collectively. As a result, Zábalo residents steward rich biological diversity: species richness measures of several biological groups in Zábalo are among the highest on the planet. These species are dispersed across diverse forest and wetland ecosystems, including extensive blackwater rivers and lake systems, swamps, and huge expanses of intact forests where Zábalo residents prohibit hunting. Zábalo residents continue to hunt, fish, and gather daily, and they maintain agricultural fields along the Aguarico River.
+:::
+
+::: {.column width="5%"}
+<!-- spacer -->
+:::
+
+::: {.column width="35%"}
+![](images/partners/Zabalo.jpg)
+:::
+::::::
+
+## Siona (Aguarico)
+
+:::::: columns
+::: {.column width="60%"}
+The Siona hold rights to two territories in Ecuador: a large area within the Cuyabeno Wildlife Reserve and another along the Aguarico River. Our research is focused on the Aguarico territory, which is jointly titled with the Siekopai, with whom they share deep cultural and linguistic ties, both speaking mutually intelligible languages. The internal boundaries between the Siona and Siekopai within these areas are recognized, though the two groups once lived together before separating in the early 1980). Siona communities in the Aguarico territory include Biaña, Sotosiaya, Aboquëhuira and Orahuëaya, which cumulatively total approximately 200 people. Despite outside influences, such as missionaries, the rubber boom, oil extraction, palm plantations and land invasions, which brought exploitation and violence, the Siona continue to safeguard their cultural identity, ecological knowledge and spiritual practices. They rely heavily on cultural plants like yoco, which are central to their connection to the land.
+:::
+
+::: {.column width="5%"}
+<!-- spacer -->
+:::
+
+::: {.column width="35%"}
+![](images/partners/Siona.jpeg)
+:::
+::::::
+
+## Cofán of Sinangoe
+
+:::::: columns
+::: {.column width="60%"}
+The Cofán community of Sinangoe is located along the southern bank of the Aguarico River, nestled at the foothills of the Andes at around 600 m in elevation. This region is known for its dynamic geological and climatic conditions, creating a unique biological convergence of Andean and Amazonian species. Despite this rich biodiversity, the community has faced significant threats from illegal mining and environmental degradation. In 2002, the Cofán were granted legal control over 32,000 ha of their ancestral lands within the Cayambe-Coca Ecological Reserve. Sinangoe's Indigenous guard, equipped with drones and camera traps, patrol the territory to monitor illegal incursions. Their landmark legal victory in 2018 led to the suspension of 52 mining concessions, protecting their rainforest from gold extraction (Brown, 2022). Currently, about 200 people reside in Sinangoe, and their efforts towards Indigenous-led conservation have earned global recognition, including the Goldman Environmental Prize.
+:::
+
+::: {.column width="5%"}
+<!-- spacer -->
+:::
+
+::: {.column width="35%"}
+![](images/partners/Sinangoe.jpg)
+:::
+::::::
+
+```{=html}
+<style>
+/* Mobile layout for all territory sections */
+@media (max-width: 768px) {
+  /* Make columns stack vertically on mobile */
+  .columns {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  /* Make all columns full width on mobile */
+  .column {
+    width: 100% !important;
+    margin-bottom: 1rem;
+  }
+  
+  /* Hide spacer columns on mobile */
+  .column:nth-child(2) {
+    display: none !important;
+  }
+  
+  /* Make images full width and centered */
+  .column img {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 8px;
+  }
+}
+</style>
+```
