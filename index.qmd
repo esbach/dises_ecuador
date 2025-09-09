@@ -116,30 +116,95 @@ main#quarto-document-content,
     text-align: center;
   }
   
-  
-  /* Make mobile navbar background glassy/transparent when expanded */
+  /* Make mobile navbar expand like other pages but with blur */
   .navbar-collapse {
-    background-color: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(20px) !important;
+    background-color:rgba(99, 111, 135, 0.55) !important;
+    backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-    border-radius: 8px !important;
-    margin-top: 0.5rem !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin-left: calc(-50vw + 50%) !important;
+    margin-right: calc(-50vw + 50%) !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    padding-top: 25% !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 1050 !important;
+  }
+  
+  /* Hide the main navbar when mobile menu is open */
+  .navbar-collapse.show ~ .navbar-brand,
+  .navbar-collapse.show ~ .navbar-toggler {
+    display: none !important;
+  }
+  
+  /* Add custom X button inside the navbar-collapse */
+  .navbar-collapse::before {
+    content: "✕" !important;
+    position: absolute !important;
+    top: 40px !important;
+    left: 40px !important;
+    color: white !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    z-index: 1060 !important;
+    line-height: 1 !important;
+  }
+  
+  .navbar-collapse {
+    text-align: center !important;
   }
   
   .navbar-collapse .nav-link {
-    color: #333333 !important;
+    color: white !important;
+    text-align: center !important;
+    font-size: 1.2rem !important;
+    margin: 10px 0 !important;
+    display: block !important;
+    width: auto !important;
   }
   
   .navbar-collapse .nav-link:hover,
   .navbar-collapse .nav-link:focus {
-    color: #455441 !important;
+    color: white !important;
+    text-decoration: underline !important;
   }
   
   .navbar-collapse .nav-link.active {
-    color: #455441 !important;
+    color: white !important;
+    text-decoration: underline !important;
   }
 }
 
 </style>
+```
+
+```{=html}
+<script>
+// Make the custom X button clickable
+document.addEventListener('DOMContentLoaded', function() {
+  // Add click event to the navbar-collapse when it's shown
+  const navbarCollapse = document.querySelector('.navbar-collapse');
+  const navbarToggler = document.querySelector('.navbar-toggler');
+  
+  if (navbarCollapse && navbarToggler) {
+    navbarCollapse.addEventListener('click', function(e) {
+      // Check if the click is on the X button (top-left area)
+      const rect = navbarCollapse.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const clickY = e.clientY - rect.top;
+      
+      // If click is in the top-left area (where X is positioned)
+      if (clickX <= 60 && clickY <= 60) {
+        // Trigger the navbar toggler to close the menu
+        navbarToggler.click();
+      }
+    });
+  }
+});
+</script>
 ```
