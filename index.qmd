@@ -99,7 +99,7 @@ main#quarto-document-content,
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
 
-/* Mobile styles for screens smaller than 768px */
+/* Mobile styles */
 @media (max-width: 992px) {
   .hero .overlay h3 {
     font-size: 1.75rem !important;
@@ -118,50 +118,18 @@ main#quarto-document-content,
   
   /* Make mobile navbar expand like other pages but with blur */
   .navbar-collapse {
-    background-color:rgba(99, 111, 135, 0.55) !important;
+    background-color:rgba(23, 23, 24, 0.4) !important;
     backdrop-filter: blur(10px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
     width: 100vw !important;
-    height: 100vh !important;
+    height: calc(100vh - 10px) !important;
     margin-left: calc(-50vw + 50%) !important;
     margin-right: calc(-50vw + 50%) !important;
     padding-left: 15px !important;
     padding-right: 15px !important;
-    padding-top: 25% !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    z-index: 1050 !important;
-  }
-  
-  /* Hide the main navbar when mobile menu is open */
-  .navbar-collapse.show ~ .navbar-brand,
-  .navbar-collapse.show ~ .navbar-toggler {
-    display: none !important;
-  }
-  
-  /* Add custom X button inside the navbar-collapse */
-  .navbar-collapse::before {
-    content: "" !important;
-    position: absolute !important;
-    top: 40px !important;
-    left: 40px !important;
-    width: 20px !important;
-    height: 20px !important;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cline x1='18' y1='6' x2='6' y2='18'/%3e%3cline x1='6' y1='6' x2='18' y2='18'/%3e%3c/svg%3e") !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-    background-size: contain !important;
-    cursor: pointer !important;
-    z-index: 1060 !important;
-    padding: 10px !important;
-    min-width: 44px !important;
-    min-height: 44px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    pointer-events: auto !important;
+    padding-top: 20px !important;
+    margin-top: 10px !important;
   }
   
   .navbar-collapse {
@@ -190,30 +158,4 @@ main#quarto-document-content,
 }
 
 </style>
-```
-
-```{=html}
-<script>
-// Make the custom X button clickable
-document.addEventListener('DOMContentLoaded', function() {
-  // Add click event to the navbar-collapse when it's shown
-  const navbarCollapse = document.querySelector('.navbar-collapse');
-  const navbarToggler = document.querySelector('.navbar-toggler');
-  
-  if (navbarCollapse && navbarToggler) {
-    navbarCollapse.addEventListener('click', function(e) {
-      // Check if the click is on the X button (top-left area)
-      const rect = navbarCollapse.getBoundingClientRect();
-      const clickX = e.clientX - rect.left;
-      const clickY = e.clientY - rect.top;
-      
-      // If click is in the top-left area (where X is positioned)
-      if (clickX <= 60 && clickY <= 60) {
-        // Trigger the navbar toggler to close the menu
-        navbarToggler.click();
-      }
-    });
-  }
-});
-</script>
 ```
