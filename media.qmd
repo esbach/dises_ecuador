@@ -13,17 +13,14 @@ format:
 ::::: columns
 ::: {.column width="50%"}
 {{< video images/film/Chambira.mov >}}
+Video by Limber Payaguaje about chambira for ConTerritorio. 
 :::
-
-::: {.column width="50%"}
-{{< video images/film/Chambira.mov >}}
-:::
-:::::
 
 # Art
 
 ::: masonry-gallery
-![](images/art/Wilfrido1.jpeg){.lightbox group="art" loading="lazy"} ![](images/art/Wilfrido2.jpeg){.lightbox group="art" loading="lazy"}
+![Art by Wilfrido Payaguaje](images/art/Wilfrido1.jpeg){.lightbox group="art" loading="lazy"}
+![Art by Wilfrido Payaguaje](images/art/Wilfrido2.jpeg){.lightbox group="art" loading="lazy"}
 :::
 
 # Photos

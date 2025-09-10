@@ -2,7 +2,7 @@
 title: "Partners"
 format: html
 toc: true
-lightbox: false
+lightbox: true
 ---
 
 # Our Partners
@@ -119,11 +119,11 @@ The Siekopai manage a mosaic of titled lands in Ecuador. Our research efforts fo
 :::
 ::::::
 
-## Cofán of Zábalo
+## Cofán of Sinangoe
 
 :::::: columns
 ::: {.column width="60%"}
-Located along the Aguarico River, Zábalo totals over 142,000 hectares and is located within the Cuyabeno Wildlife Reserve. Zábalo was founded in the early 1980s by a group of Dureno residents who sought to escape the dramatic ecological and social changes impacting Dureno, including resource scarcity and regular contact with colonists. Due to their experience in Dureno, Zábalo residents developed a sophisticated resource management system to manage their resources collectively. As a result, Zábalo residents steward rich biological diversity: species richness measures of several biological groups in Zábalo are among the highest on the planet. These species are dispersed across diverse forest and wetland ecosystems, including extensive blackwater rivers and lake systems, swamps, and huge expanses of intact forests where Zábalo residents prohibit hunting. Zábalo residents continue to hunt, fish, and gather daily, and they maintain agricultural fields along the Aguarico River.
+The Cofán community of Sinangoe is located along the southern bank of the Aguarico River, nestled at the foothills of the Andes at around 600 m in elevation. This region is known for its dynamic geological and climatic conditions, creating a unique biological convergence of Andean and Amazonian species. Despite this rich biodiversity, the community has faced significant threats from illegal mining and environmental degradation. In 2002, the Cofán were granted legal control over 32,000 ha of their ancestral lands within the Cayambe-Coca Ecological Reserve. Sinangoe's Indigenous guard, equipped with drones and camera traps, patrol the territory to monitor illegal incursions. Their landmark legal victory in 2018 led to the suspension of 52 mining concessions, protecting their rainforest from gold extraction (Brown, 2022). Currently, about 200 people reside in Sinangoe, and their efforts towards Indigenous-led conservation have earned global recognition, including the Goldman Environmental Prize.
 :::
 
 ::: {.column width="5%"}
@@ -131,7 +131,7 @@ Located along the Aguarico River, Zábalo totals over 142,000 hectares and is lo
 :::
 
 ::: {.column width="35%"}
-![](images/partners/Zabalo.jpg)
+![](images/partners/Sinangoe.jpg)
 :::
 ::::::
 
@@ -151,11 +151,11 @@ The Siona hold rights to two territories in Ecuador: a large area within the Cuy
 :::
 ::::::
 
-## Cofán of Sinangoe
+## Cofán of Zábalo
 
 :::::: columns
 ::: {.column width="60%"}
-The Cofán community of Sinangoe is located along the southern bank of the Aguarico River, nestled at the foothills of the Andes at around 600 m in elevation. This region is known for its dynamic geological and climatic conditions, creating a unique biological convergence of Andean and Amazonian species. Despite this rich biodiversity, the community has faced significant threats from illegal mining and environmental degradation. In 2002, the Cofán were granted legal control over 32,000 ha of their ancestral lands within the Cayambe-Coca Ecological Reserve. Sinangoe's Indigenous guard, equipped with drones and camera traps, patrol the territory to monitor illegal incursions. Their landmark legal victory in 2018 led to the suspension of 52 mining concessions, protecting their rainforest from gold extraction (Brown, 2022). Currently, about 200 people reside in Sinangoe, and their efforts towards Indigenous-led conservation have earned global recognition, including the Goldman Environmental Prize.
+Located along the Aguarico River, Zábalo totals over 142,000 hectares and is located within the Cuyabeno Wildlife Reserve. Zábalo was founded in the early 1980s by a group of Dureno residents who sought to escape the dramatic ecological and social changes impacting Dureno, including resource scarcity and regular contact with colonists. Due to their experience in Dureno, Zábalo residents developed a sophisticated resource management system to manage their resources collectively. As a result, Zábalo residents steward rich biological diversity: species richness measures of several biological groups in Zábalo are among the highest on the planet. These species are dispersed across diverse forest and wetland ecosystems, including extensive blackwater rivers and lake systems, swamps, and huge expanses of intact forests where Zábalo residents prohibit hunting. Zábalo residents continue to hunt, fish, and gather daily, and they maintain agricultural fields along the Aguarico River.
 :::
 
 ::: {.column width="5%"}
@@ -163,7 +163,7 @@ The Cofán community of Sinangoe is located along the southern bank of the Aguar
 :::
 
 ::: {.column width="35%"}
-![](images/partners/Sinangoe.jpg)
+![](images/partners/Zabalo.jpg)
 :::
 ::::::
 

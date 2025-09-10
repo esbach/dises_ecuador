@@ -15,33 +15,39 @@ The proposed research seeks to gain insight into the role of biocultural heritag
 
 # Participants
 
-::::::::::: columns
+::::::::::::: columns
 :::: {.column width="25%"}
 ::: person-card
-![](images/headshots/MiguelAcevedo.jpg){.grid-img group="people"} <strong>Miguel Acevedo</strong> [University of Florida]{.inst} <a href="https://www.linkedin.com/in/miguelacevedo" target="_blank" class="social-link"> <i class="bi bi-linkedin"></i> </a> </a>
+![](images/headshots/MiguelAcevedo.jpg){.grid-img group="people"} <strong>Miguel Acevedo</strong> [University of Florida]{.inst} <a href="http://www.ecosigmasquared.com/index.html" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a>
 :::
 ::::
 
 :::: {.column width="25%"}
 ::: person-card
-![](images/headshots/JoelCorreia.jpg){.grid-img group="people"} <strong>Joel Correia</strong> [Colorado State University]{.inst}
+![](images/headshots/LizbethBiaguaje.jpg){.grid-img group="people"} <strong>Lizbeth Biaguaje</strong> [Nacionalidad Siona]{.inst}
 :::
 ::::
 
 :::: {.column width="25%"}
 ::: person-card
-![](images/headshots/MichaelEsbach.jpg){.grid-img group="people"} <strong>Michael Esbach</strong> [Colorado State University]{.inst}
+![](images/headshots/JoelCorreia.jpg){.grid-img group="people"} <strong>Joel Correia</strong> [Colorado State University]{.inst} <a href="https://joel-correia.com/" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a> <a href="https://www.linkedin.com/in/joel-e-correia-1340625b/" target="_blank" class="social-link"> <i class="bi bi-linkedin"></i> </a> </a>
 :::
 ::::
 
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/MichaelEsbach.jpg){.grid-img group="people"} <strong>Michael Esbach</strong> [Colorado State University]{.inst} <a href="https://esbach.github.io/" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a> <a href="https://www.linkedin.com/in/michael-esbach-32358227/" target="_blank" class="social-link"> <i class="bi bi-linkedin"></i> </a> </a>
+:::
+::::
+:::::::
+
+::::::::::::: columns
 :::: {.column width="25%"}
 ::: person-card
 ![](images/headshots/NelyNarvaez.jpg){.grid-img group="people"} <strong>Nely Narvaez</strong> [Nacionalidad Cofán]{.inst}
 :::
 ::::
-:::::::::::
 
-::::::::::: columns
 :::: {.column width="25%"}
 ::: person-card
 ![](images/headshots/NicolasLucitande.jpeg){.grid-img group="people"} <strong>Nicolas Lucitande</strong> [Nacionalidad Siekopai]{.inst}
@@ -56,27 +62,34 @@ The proposed research seeks to gain insight into the role of biocultural heritag
 
 :::: {.column width="25%"}
 ::: person-card
-![](images/headshots/CynthiaSimmons.jpg){.grid-img group="people"} <strong>Cynthia Simmons</strong> [University of Florida]{.inst}
+![](images/headshots/LimberPayaguaje.jpg){.grid-img group="people"} <strong>Limber Payaguaje</strong> [Nacionalidad Siona]{.inst} <a href="https://ifnotusthenwho.me/who/limber-payaguaje/" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a>
+:::
+::::
+:::::::
+
+::::::::::::: columns
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/CynthiaSimmons.jpg){.grid-img group="people"} <strong>Cynthia Simmons</strong> [University of Florida]{.inst} <a href="https://geog.ufl.edu/faculty/simmons/" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a>
 :::
 ::::
 
 :::: {.column width="25%"}
 ::: person-card
-![](images/headshots/GonzaloRivas.jpg){.grid-img group="people"} <strong>Gonzalo Rivas-Torres</strong> [Univ. San Francisco de Quito]{.inst}
-:::
-::::
-:::::::::::
-
-::::::: columns
-:::: {.column width="25%"}
-::: person-card
-![](images/headshots/CarlosUrgiles.jpeg){.grid-img group="people"} <strong>Carlos Urgiles</strong> [Colorado State University]{.inst}
+![](images/headshots/GonzaloRivas.jpg){.grid-img group="people"} <strong>Gonzalo Rivas-Torres</strong> [Univ. San Francisco de Quito]{.inst} <a href="https://ecologyecuador.com/" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a> <a href="https://www.linkedin.com/in/gonzalo-rivas-89073942/" target="_blank" class="social-link"> <i class="bi bi-linkedin"></i> </a> </a>
 :::
 ::::
 
+
 :::: {.column width="25%"}
 ::: person-card
-![](images/headshots/RobertWalker.jpeg){.grid-img group="people"} <strong>Robert Walker</strong> [University of Florida]{.inst}
+![](images/headshots/CarlosUrgiles.jpeg){.grid-img group="people"} <strong>Carlos Urgiles</strong> [Colorado State University]{.inst} <a href="https://www.researchgate.net/profile/Carlos-Urgiles-Verdugo" target="_blank" class="social-link"> <i class="bi bi-book"></i> </a> </a>
+:::
+::::
+
+:::: {.column width="25%"}
+::: person-card
+![](images/headshots/RobertWalker.jpeg){.grid-img group="people"} <strong>Robert Walker</strong> [University of Florida]{.inst} <a href="https://geog.ufl.edu/faculty/walker/" target="_blank" class="social-link"> <i class="bi bi-globe"></i> </a> </a>
 :::
 ::::
 :::::::
@@ -137,6 +150,7 @@ The proposed research seeks to gain insight into the role of biocultural heritag
   color: #555;           /* medium grey */
   display: inline-block;
   margin-top: 0.25rem;
+  margin-right: 10px; /* space between icons */
   text-decoration: none;
 }
 
