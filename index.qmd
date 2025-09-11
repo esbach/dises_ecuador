@@ -116,6 +116,12 @@ main#quarto-document-content,
 @media (max-width: 992px) {
   .hero .overlay h3 {
     font-size: 1.75rem !important;
+    position: absolute;
+    bottom: 15%;               /* position in bottom 25% - matches desktop */
+    left: 15%;
+    right: 15%;
+    margin: 0;
+    text-align: center;
   }
   
   .hero .overlay h3 br {
@@ -123,10 +129,7 @@ main#quarto-document-content,
   }
   
   .hero .overlay {
-    padding-left: 15%;
-    padding-right: 15%;
-    padding-bottom: 25%;        /* position in bottom 25% */
-    text-align: center;
+    padding: 0;                /* remove all padding since h3 is absolutely positioned */
   }
   
 }
