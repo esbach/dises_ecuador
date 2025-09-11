@@ -3,7 +3,7 @@ title: "Publications"
 date-format: 'YYYY'
 listing:
   contents:
-    - publications.yml
+    - /publications.yml
   type: table
   fields: [date, journal-title, title, authors, doi]
   field-display-names:

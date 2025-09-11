@@ -1,24 +1,66 @@
 [
   {
-    "objectID": "camera_traps.html",
-    "href": "camera_traps.html",
-    "title": "Camera Traps",
+    "objectID": "reports_es.html",
+    "href": "reports_es.html",
+    "title": "Reports",
     "section": "",
-    "text": "Camera Trap Data Visualization\nThis interactive map shows camera trap data from the Siekopai territory, displaying species detections and site information.\n\nlibrary(shiny)\nlibrary(leaflet)\nlibrary(dplyr)\n\n\nAttaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\nlibrary(sf)\n\nLinking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE\n\ndata_dir &lt;- \"map\"\nterritory_lookup &lt;- c(SKP = \"Siekopai\", SNA = \"Siona\", SGE = \"Sinangoe\")\n\nui &lt;- fluidPage(\n  titlePanel(\"Camera Trap Data - Siekopai Territory\"),\n  selectInput(\"species\", \"Select Species:\", choices = NULL),\n  leafletOutput(\"map\")\n)\n\nserver &lt;- function(input, output, session) {\n  # Territory-specific data\n  territory_data &lt;- reactive({\n    territory_code &lt;- \"SKP\"\n    territory_name &lt;- territory_lookup[[territory_code]]\n    \n    # File paths\n    sites_file      &lt;- file.path(data_dir, paste0(territory_code, \" Sites.csv\"))\n    detections_file &lt;- file.path(data_dir, paste0(territory_code, \" Detections.csv\"))\n    shp_prefix      &lt;- file.path(data_dir, paste0(territory_code, \" Territory\"))\n    \n    # Read data\n    sites &lt;- read.csv(sites_file)\n    detections &lt;- read.csv(detections_file)\n    species_list &lt;- sort(unique(detections$Species))\n    territory_sf &lt;- st_read(paste0(shp_prefix, \".shp\"))\n    territory_sf &lt;- st_make_valid(territory_sf)\n    \n    list(\n      territory_code = territory_code,\n      territory_name = territory_name,\n      sites = sites,\n      detections = detections,\n      species_list = species_list,\n      territory_sf = territory_sf\n    )\n  })\n  \n  # Update species dropdown after data loads\n  observe({\n    updateSelectInput(session, \"species\",\n                      choices = c(\"All Species\", territory_data()$species_list),\n                      selected = \"All Species\")\n  })\n  \n  reactive_data &lt;- reactive({\n    sites &lt;- territory_data()$sites\n    detections &lt;- territory_data()$detections\n    if (input$species == \"All Species\") {\n      detections %&gt;%\n        group_by(Station) %&gt;%\n        summarise(N = n_distinct(Species))\n    } else {\n      detections %&gt;%\n        filter(Species == input$species) %&gt;%\n        count(Station, name = \"N\")\n    }\n  })\n  \n  output$map &lt;- renderLeaflet({\n    sites &lt;- territory_data()$sites\n    territory_sf &lt;- territory_data()$territory_sf\n    df &lt;- reactive_data()\n    sites_rich &lt;- sites %&gt;%\n      left_join(df, by = \"Station\") %&gt;%\n      tidyr::replace_na(list(N = 0))\n    \n    pal &lt;- colorNumeric(\"YlOrRd\", sites_rich$N)\n    \n    leaflet(sites_rich) %&gt;%\n      addProviderTiles(providers$CartoDB.VoyagerLabelsUnder) %&gt;%\n      addPolygons(data = territory_sf,\n                  color = \"#208a68\", weight = 2, fillOpacity = 0.2) %&gt;%\n      addCircleMarkers(\n        lng = ~gps_x, lat = ~gps_y,\n        color = ~pal(N),\n        radius = 8, fillOpacity = 1,\n        stroke = FALSE,\n        label = ~paste0(Station, \": \", N,\n                        ifelse(input$species==\"All Species\", \" species\", \" detections\"))\n      ) %&gt;%\n      addLegend(\"bottomright\", pal = pal, values = ~N,\n                title = ifelse(input$species==\"All Species\", \"Number of&lt;br&gt;Species\", \"Detections\"))\n  })\n}\n\nshinyApp(ui, server)"
+    "text": "Reports\nCommunities can log in to access detailed, interactive reports about their territories. These reports are password protected to protect community data protocols and ensure data sovereignty. Click on your community below to view comprehensive data, maps, and analytics specific to your region.\n\n\n\nSiekopai\n\nSiona\n\nSinangoe\n\nZabalo"
   },
   {
-    "objectID": "publications.html",
-    "href": "publications.html",
-    "title": "Publications",
+    "objectID": "partners_es.html",
+    "href": "partners_es.html",
+    "title": "Partners",
     "section": "",
-    "text": "Publications\n\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Authors\n      \n      \n        Year - Oldest\n      \n      \n        Year - Newest\n      \n      \n        Journal\n      \n      \n        Link\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nYear\n\n\n\nJournal\n\n\n\nTitle\n\n\n\nAuthors\n\n\n\nLink\n\n\n\n\n\n\n\n\n2025\n\n\nPeople and Nature\n\n\nStimulating Reciprocity: How Human–plant Relations Support Indigenous Cultural Revitalization and Stewardship in the Ecuadorian Amazon\n\n\nCorreia, J. E., Piaguage Lucitante, J., Weiss, L., Narváez, N., Lucitante, L., Biaguaje, A., Piaguaje, Y., Suale, A., Payagyaje, A., Piaguage, E., Simmons, C., Esbach, M.\n\n\nhttps://doi.org/10.1002/pan3.70019\n\n\n\n\n\n\n2025\n\n\nAnnals of the American Association of Geographers\n\n\nBiocultural Geographies: Stewardship, Indigenous Territories, and Conservation in Ecuador’s Amazon\n\n\nCorreia, J. E., Walker, R. T., Simmons, C. S., Urgilés, C., Narváez Quenama, N., Yiyocuro, L., Esbach, M.\n\n\nhttps://doi.org/10.1080/24694452.2025.2511942\n\n\n\n\n\n\n2023\n\n\nFigshare\n\n\nAnimales del Territorio Siekopai, Sucumbíos, Ecuador\n\n\nPayaguaje, H., Piaguaje, F., Piaguaje, R., Piaguaje, L., Payaguaje, E., Piaguaje, A., Piaguaje, R., Lucitande, E., Worsdell, T., Weiss, L., Urgilés-Verdugo, C., Esbach, M.\n\n\nhttps://doi.org/10.6084/m9.figshare.24922029.v2\n\n\n\n\n\n\n2024\n\n\nFigshare\n\n\nAnimales del Territorio Cofán de Sinangoe, Sucumbíos, Ecuador\n\n\nQuenama, A., Criollo, G., Ciollo, R., Quenama, M., Umenda, R., Umenda, E., Quenama, J., Quenama, F., Criollo, R., Urgilés-Verdugo, C., Esbach, M.\n\n\nhttps://doi.org/10.6084/m9.figshare.26073115.v1\n\n\n\n\n\n\n2023\n\n\nFigshare\n\n\nAnimales del Territorio Siona, Sucumbíos, Ecuador\n\n\nYiyocuro, L., Yoyocuro, I., Payaguaje, S., Payaguaje, M., Yiyocuro, L., Tucupi, M., Yiyoguaje, J., Piaguaje, O., Piaguaje, C., Biaguaje, E., Biaguaje, M., Piaguaje, G., Payaguaje, L., Urgilés-Verdugo, C., Esbach, M.\n\n\nhttps://doi.org/10.6084/m9.figshare.24922083.v2\n\n\n\n\n\n\nNo matching items"
+    "text": "The Ecuadorian Amazon is home to numerous Indigenous Peoples and the territories in which they live, although far fewer and with much smaller populations than prior to European conquest. Nevertheless, in recent years, Indigenous Peoples have mobilized here to fight for their land and have successfully regained property rights to over 50% of the region. This includes our partners the Siekopai (or Secoya), the Siona, and the Cofán (or A’i)."
   },
   {
-    "objectID": "gallery.html",
-    "href": "gallery.html",
-    "title": "Gallery",
+    "objectID": "partners_es.html#siekopai-aguarico",
+    "href": "partners_es.html#siekopai-aguarico",
+    "title": "Partners",
+    "section": "Siekopai (Aguarico)",
+    "text": "Siekopai (Aguarico)\n\n\nThe Siekopai manage a mosaic of titled lands in Ecuador. Our research efforts focus on their jointly held territory with the Siona along the Aguarico River, which hosts the communities of San Pablo, Waiya and Bellavista, as well as a larger block to the east, which includes the communities of Remolino and Sewaya. Together these communities host approximately 700 people. Additional territories include a block of land to the west of the Cuyabeno Wildlife Reserve and a territory near the border of Peru within the Reserve. The Siekopai recently won a legal case to expand this territory, Pë’këya, from 5000 ha to over 40,000 ha. This victory is especially significant because it sets a legal precedent in Ecuador, acknowledging Indigenous peoples’ rights to lands within protected areas. The Siekopai are deeply connected to their land and are actively engaged in stewardship efforts. These include traditional medicinal gardens, the protection of sacred plants like yoco and yajé (ayahuasca) and grassroots initiatives to reclaim and protect their territories"
+  },
+  {
+    "objectID": "partners_es.html#cofán-of-sinangoe",
+    "href": "partners_es.html#cofán-of-sinangoe",
+    "title": "Partners",
+    "section": "Cofán of Sinangoe",
+    "text": "Cofán of Sinangoe\n\n\nThe Cofán community of Sinangoe is located along the southern bank of the Aguarico River, nestled at the foothills of the Andes at around 600 m in elevation. This region is known for its dynamic geological and climatic conditions, creating a unique biological convergence of Andean and Amazonian species. Despite this rich biodiversity, the community has faced significant threats from illegal mining and environmental degradation. In 2002, the Cofán were granted legal control over 32,000 ha of their ancestral lands within the Cayambe-Coca Ecological Reserve. Sinangoe’s Indigenous guard, equipped with drones and camera traps, patrol the territory to monitor illegal incursions. Their landmark legal victory in 2018 led to the suspension of 52 mining concessions, protecting their rainforest from gold extraction (Brown, 2022). Currently, about 200 people reside in Sinangoe, and their efforts towards Indigenous-led conservation have earned global recognition, including the Goldman Environmental Prize."
+  },
+  {
+    "objectID": "partners_es.html#siona-aguarico",
+    "href": "partners_es.html#siona-aguarico",
+    "title": "Partners",
+    "section": "Siona (Aguarico)",
+    "text": "Siona (Aguarico)\n\n\nThe Siona hold rights to two territories in Ecuador: a large area within the Cuyabeno Wildlife Reserve and another along the Aguarico River. Our research is focused on the Aguarico territory, which is jointly titled with the Siekopai, with whom they share deep cultural and linguistic ties, both speaking mutually intelligible languages. The internal boundaries between the Siona and Siekopai within these areas are recognized, though the two groups once lived together before separating in the early 1980). Siona communities in the Aguarico territory include Biaña, Sotosiaya, Aboquëhuira and Orahuëaya, which cumulatively total approximately 200 people. Despite outside influences, such as missionaries, the rubber boom, oil extraction, palm plantations and land invasions, which brought exploitation and violence, the Siona continue to safeguard their cultural identity, ecological knowledge and spiritual practices. They rely heavily on cultural plants like yoco, which are central to their connection to the land."
+  },
+  {
+    "objectID": "partners_es.html#cofán-of-zábalo",
+    "href": "partners_es.html#cofán-of-zábalo",
+    "title": "Partners",
+    "section": "Cofán of Zábalo",
+    "text": "Cofán of Zábalo\n\n\nLocated along the Aguarico River, Zábalo totals over 142,000 hectares and is located within the Cuyabeno Wildlife Reserve. Zábalo was founded in the early 1980s by a group of Dureno residents who sought to escape the dramatic ecological and social changes impacting Dureno, including resource scarcity and regular contact with colonists. Due to their experience in Dureno, Zábalo residents developed a sophisticated resource management system to manage their resources collectively. As a result, Zábalo residents steward rich biological diversity: species richness measures of several biological groups in Zábalo are among the highest on the planet. These species are dispersed across diverse forest and wetland ecosystems, including extensive blackwater rivers and lake systems, swamps, and huge expanses of intact forests where Zábalo residents prohibit hunting. Zábalo residents continue to hunt, fish, and gather daily, and they maintain agricultural fields along the Aguarico River."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "About this site"
+    "text": "The Project\nThe Project Indigenous Peoples have long interacted with their environment, thereby shaping a variety of socio-environmental systems where human and natural components share iterative relations and sustain feedbacks that modify and influence one another. This project focuses on the production and maintenance of Indigenous territories, particularly the ways in which Indigenous Peoples utilize their language, knowledge, and practices to sustain their relationships with their environment. Whereas extractive development creates socio-environmental systems that threaten long-term ecosystem dynamics, as evidenced by climate change, many Indigenous peoples have employed forms of care, conservation, and adaptive management that maintain their lands and livelihoods.\nThe goal of this research is to understand how Indigenous communities maintain their territories despite the deleterious effects of encroaching extractive socio-environmental systems. We have established partnerships with the Cofán, Siekopai, and Siona People in the Ecuadorian Amazon. US and Indigenous researchers will co-develop research that examines the resilience of Indigenous territories in the face of change. The project pairs Western (e.g., wildlife ecology, socio-environmental modeling, human geography) with place-based Indigenous approaches to knowledge to study resilience across a set of discrete Cofán, Siekopai and Siona territories that vary in size, degree of encroachment, and integrity of biocultural heritage.\n\n\nApproach\nThe proposed research seeks to gain insight into the role of biocultural heritage in territorial resilience. As such, we have developed hypotheses to be addressed using a fieldwork-based, interdisciplinary design that integrates the social and natural sciences, using four Indigenous territories as experimental settings and sources of information. Our research design seeks to help build Indigenous research capacity, support Indigenous models of governance in their territory, and provide an important source of income that will support several families in each territory. We are working to train Indigenous researchers in each community so that they can participate in each stage of the research process and lead future research.\n\n\nParticipants\n\n\n\n Miguel Acevedo University of Florida    \n\n\n\n Lizbeth Biaguaje Nacionalidad Siona\n\n\n\n Joel Correia Colorado State University        \n\n\n\n Michael Esbach Colorado State University        \n\n\n\n\n\n\n Nely Narvaez Nacionalidad Cofán\n\n\n\n Nicolas Lucitande Nacionalidad Siekopai\n\n\n\n Yolanda Piaguaje Nacionalidad Siona\n\n\n\n Limber Payaguaje Nacionalidad Siona    \n\n\n\n\n\n\n Cynthia Simmons University of Florida    \n\n\n\n Gonzalo Rivas-Torres Univ. San Francisco de Quito        \n\n\n\n Carlos Urgiles Colorado State University    \n\n\n\n Robert Walker University of Florida"
+  },
+  {
+    "objectID": "media.html",
+    "href": "media.html",
+    "title": "Multimedia",
+    "section": "",
+    "text": "Videos\n\n\n Video by Limber Payaguaje about chambira for ConTerritorio.\n\nArt\n\n \n\n\nPhotos"
+  },
+  {
+    "objectID": "reports.html",
+    "href": "reports.html",
+    "title": "Reports",
+    "section": "",
+    "text": "Reports\nCommunities can log in to access detailed, interactive reports about their territories. These reports are password protected to protect community data protocols and ensure data sovereignty. Click on your community below to view comprehensive data, maps, and analytics specific to your region.\n\n\n\nSiekopai\n\nSiona\n\nSinangoe\n\nZabalo"
   },
   {
     "objectID": "partners.html",
@@ -63,17 +105,24 @@
     "text": "Coexistence based on Knowledge and  Conservation of Indigenous Territories"
   },
   {
-    "objectID": "media.html",
-    "href": "media.html",
-    "title": "Multimedia",
+    "objectID": "publications.html",
+    "href": "publications.html",
+    "title": "Publications",
     "section": "",
-    "text": "Videos\n\n\n Video by Limber Payaguaje about chambira for ConTerritorio.\n\nArt\n\n \n\n\nPhotos"
+    "text": "Publications\n\n\n\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n      \n        Authors\n      \n      \n        Year - Oldest\n      \n      \n        Year - Newest\n      \n      \n        Journal\n      \n      \n        Link\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nYear\n\n\n\nJournal\n\n\n\nTitle\n\n\n\nAuthors\n\n\n\nLink\n\n\n\n\n\n\n\n\n2025\n\n\nPeople and Nature\n\n\nStimulating Reciprocity: How Human–plant Relations Support Indigenous Cultural Revitalization and Stewardship in the Ecuadorian Amazon\n\n\nCorreia, J. E., Piaguage Lucitante, J., Weiss, L., Narváez, N., Lucitante, L., Biaguaje, A., Piaguaje, Y., Suale, A., Payagyaje, A., Piaguage, E., Simmons, C., Esbach, M.\n\n\nhttps://doi.org/10.1002/pan3.70019\n\n\n\n\n\n\n2025\n\n\nAnnals of the American Association of Geographers\n\n\nBiocultural Geographies: Stewardship, Indigenous Territories, and Conservation in Ecuador’s Amazon\n\n\nCorreia, J. E., Walker, R. T., Simmons, C. S., Urgilés, C., Narváez Quenama, N., Yiyocuro, L., Esbach, M.\n\n\nhttps://doi.org/10.1080/24694452.2025.2511942\n\n\n\n\n\n\n2023\n\n\nFigshare\n\n\nAnimales del Territorio Siekopai, Sucumbíos, Ecuador\n\n\nPayaguaje, H., Piaguaje, F., Piaguaje, R., Piaguaje, L., Payaguaje, E., Piaguaje, A., Piaguaje, R., Lucitande, E., Worsdell, T., Weiss, L., Urgilés-Verdugo, C., Esbach, M.\n\n\nhttps://doi.org/10.6084/m9.figshare.24922029.v2\n\n\n\n\n\n\n2024\n\n\nFigshare\n\n\nAnimales del Territorio Cofán de Sinangoe, Sucumbíos, Ecuador\n\n\nQuenama, A., Criollo, G., Ciollo, R., Quenama, M., Umenda, R., Umenda, E., Quenama, J., Quenama, F., Criollo, R., Urgilés-Verdugo, C., Esbach, M.\n\n\nhttps://doi.org/10.6084/m9.figshare.26073115.v1\n\n\n\n\n\n\n2023\n\n\nFigshare\n\n\nAnimales del Territorio Siona, Sucumbíos, Ecuador\n\n\nYiyocuro, L., Yoyocuro, I., Payaguaje, S., Payaguaje, M., Yiyocuro, L., Tucupi, M., Yiyoguaje, J., Piaguaje, O., Piaguaje, C., Biaguaje, E., Biaguaje, M., Piaguaje, G., Payaguaje, L., Urgilés-Verdugo, C., Esbach, M.\n\n\nhttps://doi.org/10.6084/m9.figshare.24922083.v2\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
+    "objectID": "about_es.html",
+    "href": "about_es.html",
     "title": "About",
     "section": "",
     "text": "The Project\nThe Project Indigenous Peoples have long interacted with their environment, thereby shaping a variety of socio-environmental systems where human and natural components share iterative relations and sustain feedbacks that modify and influence one another. This project focuses on the production and maintenance of Indigenous territories, particularly the ways in which Indigenous Peoples utilize their language, knowledge, and practices to sustain their relationships with their environment. Whereas extractive development creates socio-environmental systems that threaten long-term ecosystem dynamics, as evidenced by climate change, many Indigenous peoples have employed forms of care, conservation, and adaptive management that maintain their lands and livelihoods.\nThe goal of this research is to understand how Indigenous communities maintain their territories despite the deleterious effects of encroaching extractive socio-environmental systems. We have established partnerships with the Cofán, Siekopai, and Siona People in the Ecuadorian Amazon. US and Indigenous researchers will co-develop research that examines the resilience of Indigenous territories in the face of change. The project pairs Western (e.g., wildlife ecology, socio-environmental modeling, human geography) with place-based Indigenous approaches to knowledge to study resilience across a set of discrete Cofán, Siekopai and Siona territories that vary in size, degree of encroachment, and integrity of biocultural heritage.\n\n\nApproach\nThe proposed research seeks to gain insight into the role of biocultural heritage in territorial resilience. As such, we have developed hypotheses to be addressed using a fieldwork-based, interdisciplinary design that integrates the social and natural sciences, using four Indigenous territories as experimental settings and sources of information. Our research design seeks to help build Indigenous research capacity, support Indigenous models of governance in their territory, and provide an important source of income that will support several families in each territory. We are working to train Indigenous researchers in each community so that they can participate in each stage of the research process and lead future research.\n\n\nParticipants\n\n\n\n Miguel Acevedo University of Florida    \n\n\n\n Lizbeth Biaguaje Nacionalidad Siona\n\n\n\n Joel Correia Colorado State University        \n\n\n\n Michael Esbach Colorado State University        \n\n\n\n\n\n\n Nely Narvaez Nacionalidad Cofán\n\n\n\n Nicolas Lucitande Nacionalidad Siekopai\n\n\n\n Yolanda Piaguaje Nacionalidad Siona\n\n\n\n Limber Payaguaje Nacionalidad Siona    \n\n\n\n\n\n\n Cynthia Simmons University of Florida    \n\n\n\n Gonzalo Rivas-Torres Univ. San Francisco de Quito        \n\n\n\n Carlos Urgiles Colorado State University    \n\n\n\n Robert Walker University of Florida"
+  },
+  {
+    "objectID": "media_es.html",
+    "href": "media_es.html",
+    "title": "Multimedia",
+    "section": "",
+    "text": "Videos\n\n\n Video by Limber Payaguaje about chambira for ConTerritorio.\n\nArt\n\n \n\n\nPhotos"
   }
 ]

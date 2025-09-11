@@ -16,6 +16,7 @@ website:
       - partners.qmd
       - publications.qmd
       - media.qmd
+      - reports.qmd
 
 format:
   html:

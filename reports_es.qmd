@@ -1,0 +1,70 @@
+---
+title: "Reports"
+---
+
+# Reports
+
+Communities can log in to access detailed, interactive reports about their territories. These reports are password protected to protect community data protocols and ensure data sovereignty. Click on your community below to view comprehensive data, maps, and analytics specific to your region.
+
+<br>
+
+::::::::::: columns
+::::: {.column width="25%"}
+[**Siekopai**](https://siekopai.conterritorio.com){.btn .btn-lg .custom-territory-btn}
+::::
+
+::::: {.column width="25%"}
+[**Siona**](https://siona.conterritorio.com){.btn .btn-lg .custom-territory-btn}
+::::
+
+::::: {.column width="25%"}
+[**Sinangoe**](https://sinangoe.conterritorio.com){.btn .btn-lg .custom-territory-btn}
+::::
+
+::::: {.column width="25%"}
+[**Zabalo**](https://zabalo.conterritorio.com){.btn .btn-lg .custom-territory-btn}
+::::
+::::::::::: 
+
+<style>
+.custom-territory-btn {
+  background-color: #f8f9fa;
+  color:rgb(69, 84, 65);
+  border: 2px solid rgb(69, 84, 65);
+  padding: 20px;
+  font-size: 1.2em;
+  margin: 0 10px;
+  width: calc(100% - 20px);
+}
+
+.custom-territory-btn:hover {
+  background-color: rgb(69, 84, 65);
+  color: white;
+  border-color: rgb(69, 84, 65);
+}
+
+/* Desktop spacing between columns */
+.columns {
+  gap: 20px;
+}
+
+/* Mobile responsive styles */
+@media (max-width: 750px) {
+  .columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0px;
+  }
+
+  .column {
+    width: 100% !important;
+    margin-bottom: 0px;
+  }
+  
+  .custom-territory-btn {
+    margin: 0px;
+    width: 100%;
+  }
+}
+</style>
