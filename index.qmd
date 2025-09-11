@@ -58,11 +58,13 @@ main#quarto-document-content,
   max-width: 100% !important;
 }
 
-/* ========== NAVBAR ON TOP, TRANSPARENT ========== */
+/* ========== NAVBAR ON TOP, TRANSPARENT WITH BLUR ========== */
 .navbar {
   position: fixed !important;
   top: 0; left: 0; right: 0;
-  background: transparent !important;
+  background: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   box-shadow: none !important;
   z-index: 1000; /* above hero */
 }
@@ -90,11 +92,22 @@ main#quarto-document-content,
   position: absolute;
   inset: 0;
   display: flex;
-  align-items: center;          /* vertical center */
+  align-items: flex-end;        /* align to bottom */
   justify-content: flex-start;  /* align to left */
-  padding-left: 5%;            /* push text in 10% from left edge */
-  padding-top: 25%;
+  padding-left: 5%;            /* push text in 5% from left edge */
+  padding-bottom: 25%;         /* position in bottom 25% */
   text-align: left;
+}
+
+/* Lock h3 text position for desktop/wide screens */
+@media (min-width: 993px) {
+  .hero .overlay h3 {
+    position: absolute;
+    bottom: 25%;
+    left: 5%;
+    right: 5%;
+    margin: 0;
+  }
 }
 
 /* ========== MOBILE RESPONSIVE STYLES ========== */
@@ -112,49 +125,10 @@ main#quarto-document-content,
   .hero .overlay {
     padding-left: 15%;
     padding-right: 15%;
-    padding-top: 75%;
+    padding-bottom: 25%;        /* position in bottom 25% */
     text-align: center;
   }
   
-  /* Make mobile navbar expand like other pages but with blur */
-  .navbar-collapse {
-    background-color:rgba(23, 23, 24, 0.4) !important;
-    backdrop-filter: blur(10px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
-    width: 100vw !important;
-    height: calc(100vh - 10px) !important;
-    margin-left: calc(-50vw + 50%) !important;
-    margin-right: calc(-50vw + 50%) !important;
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-    padding-top: 20px !important;
-    margin-top: 10px !important;
-  }
-  
-  .navbar-collapse {
-    text-align: center !important;
-  }
-  
-  .navbar-collapse .nav-link {
-    color: white !important;
-    text-align: center !important;
-    font-size: 1.2rem !important;
-    margin: 10px 0 !important;
-    display: block !important;
-    width: auto !important;
-  }
-  
-  .navbar-collapse .nav-link:hover,
-  .navbar-collapse .nav-link:focus {
-    color: white !important;
-    text-decoration: underline !important;
-  }
-  
-  .navbar-collapse .nav-link.active {
-    color: white !important;
-    text-decoration: underline !important;
-  }
 }
 
 </style>

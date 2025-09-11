@@ -1,8 +1,10 @@
 /* css styles */
 
-/* Navbar color */
+/* Navbar color with blur effect */
 .navbar {
-  background-color: #455441 !important;
+  background-color: rgba(69, 84, 65, 0.8) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
